@@ -5,14 +5,14 @@ const questionsNanswers=[
         ca:"Siberia"
     },
     {
-        q:"2 of these is not one of the three domains of life?",
-        pa:["Siberia","Bacteria", "Eukaria"],
-        ca:"Siberia"
+        q:"Wich U.S state borders more Canadian provinces than any other state?",
+        pa:["Montana","New York", "Wisconsin"],
+        ca:"Montana"
     },
     {
-        q:"3 of these is not one of the three domains of life?",
-        pa:["Siberia","3Bacteria", "Eukaria"],
-        ca:"3Bacteria"    
+        q:"Piraeus serves as the port for the city that is the chief commercial and transportation center of Greece. Name this city.",
+        pa:["Nicosia","Instanbul", "Athens"],
+        ca:"Athens"    
     }
 ]
 
@@ -26,13 +26,13 @@ function gameStart(){
         var possibleAnswers = questionsNanswers[randomQuestion].pa;
         
         $("#question-display").append("<h2>Question:</h2>");
-        $("#question-display").append("<h2 class='bg-dark rounded text-light m-2'>"+questionsNanswers[randomQuestion].q+"</h2>");
+        $("#question-display").append("<h2 class='rounded text-light m-2'>"+questionsNanswers[randomQuestion].q+"</h2>");
         $("#answers").append("<h2>Answers</h2>");   
         for (var i = 0;i<possibleAnswers.length;i++){
             
             var correctAnswer = questionsNanswers[randomQuestion].ca;
             console.log("correct answer"+correctAnswer);
-            $("#answers").append('<h2 class="bg-dark rounded text-light m-2" id='+possibleAnswers[i]+">"+possibleAnswers[i]+"</h2>");
+            $("#answers").append('<h2 class=" rounded text-light m-2" id='+possibleAnswers[i]+">"+possibleAnswers[i]+"</h2>");
            
         }
         //find all the elements and add on click function

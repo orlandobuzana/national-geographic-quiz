@@ -1,13 +1,21 @@
 /**
  * index.scss
  */
+ :root {
+  --main-content-bg-color: #FAF4F1;
+  --html-content-bg-color: #887B86;
+  --header-footer-bg-color:#4B5E5C;
+  --text-color:#FAF8FA;
+  --p-bg-color:#A9A5AF;
+}
  *
  {
    margin:0;
    padding:0;
  }
  body {
-   background: #f5f5f5;
+
+   background: var(--html-content-bg-color);
  }
  .fc{
    max-width: 960px;
@@ -28,6 +36,8 @@
  /* header and footer should be full width */
  .fc header,
  .fc footer {
+   color: var(--text-color);
+   background-color: var(--header-footer-bg-color);
      
    flex: 0 1 100vw; 
  }        
@@ -40,26 +50,42 @@
  .fc { min-height: calc(100vh - 200px); } 
  
  .fc main{
+     background-color: var(--main-content-bg-color);
      text-align: center;
      max-height: auto;
      min-width: 250px;
      max-width: auto;   
  }
+ .fc main h2{
+   background-color: var(--p-bg-color);
+
+ }
  .fc aside{
+    background-color: var(--main-content-bg-color);
+  
      width: auto;
      text-align: center;
      max-width: auto;
      min-height: 250px;
      min-width: 250px;
  }  
+ .fc aside h2{
+  background-color: var(--p-bg-color);
+
+ }
  .fc section{
+    background-color: var(--main-content-bg-color);
      text-align: center;
      max-width: auto;
      min-width: 250px;    
  }
+ .fc section h2{
+  background-color: var(--p-bg-color);
+ }
  /* size header and footer to be full width each */
  header,
  footer {
+   
    text-align: center;
    box-sizing: border-box;
    width: 100vw;  
