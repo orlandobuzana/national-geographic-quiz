@@ -1,0 +1,66 @@
+/**
+ * index.scss
+ */
+ *
+ {
+   margin:0;
+   padding:0;
+ }
+ body {
+   background: #f5f5f5;
+ }
+ .fc{
+   max-width: 960px;
+   margin: 0 auto 0 auto;
+ }
+ .fc > * { 
+   padding: 0px;   
+ }
+ 
+ /* initialize flexbox container and flexbox items */
+ .fc { 
+   display: flex;
+   flex-flow: row wrap;
+ }
+ .fc > * { 
+   flex: 1; 
+ }
+ /* header and footer should be full width */
+ .fc header,
+ .fc footer {
+     
+   flex: 0 1 100vw; 
+ }        
+ /* ensure flex-container is always at least as tall as the viewport. 
+    Keeps footer from coming up*/
+ .fc { min-height: 100vh; }
+ /* ensure flex-container is always at least as tall as the viewport, 
+    minus the height of the header and footer combined. 
+ */
+ .fc { min-height: calc(100vh - 200px); } 
+ 
+ .fc main{
+     text-align: center;
+     max-height: auto;
+     min-width: 250px;
+     max-width: auto;   
+ }
+ .fc aside{
+     width: auto;
+     text-align: center;
+     max-width: auto;
+     min-height: 250px;
+     min-width: 250px;
+ }  
+ .fc section{
+     text-align: center;
+     max-width: auto;
+     min-width: 250px;    
+ }
+ /* size header and footer to be full width each */
+ header,
+ footer {
+   text-align: center;
+   box-sizing: border-box;
+   width: 100vw;  
+ }
