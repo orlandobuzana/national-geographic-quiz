@@ -13,18 +13,60 @@ const questionsNanswers=[
         q:"Piraeus serves as the port for the city that is the chief commercial and transportation center of Greece. Name this city.",
         pa:["Nicosia","Instanbul", "Athens"],
         ca:"Athens"    
+    },
+    {
+        q:"Which of the following countries has the longest coastline?",
+        pa:["Virginia","Iran", "Brazil"],
+        ca:"Iran"    
+    },
+    {
+        q:"how long did it take to get to the moon in 1969?",
+        pa:["42_Days","2_Days", "One_week"],
+        ca:"42_Days"    
     }
 ]
-
+//var queryURL = "../json/index.json";
 var win = 0;
 var loss = 0; 
+var timer;
+var count = 30;
+//function load() {
+   // var someData_notJSON = JSON.parse(queryURL);
+   // console.log(someData_notJSON[0].red); // Will log "is my fave color"
+   // }
+//load();
 //todo: Timer
+
 function gameStart(){
+    $("#score-display").append("<h2>Score:</h2>");
+    $("#score-display").append("<h2 class='rounded text-light m-2' id='timer'>Timer :"+count+"</h2>");
+    $("#score-display").append("<h2 class='rounded text-light m-2' id='correct'>Correct :"+win+"</h2>");
+    $("#score-display").append("<h2 class='rounded text-light m-2'id='incorrect'>Incorrect :"+loss+"</h2>");
+    
     function assignQnA(){
+        if(questionsNanswers.length < 0){
+            clearInterval(timer);
+            clearAll();
+            $("#answers").append("<h1>GAME OVER!</h1>");
+            $("#answers").append("<h1>Best Score "+win+" !</h1>");
+            $("#answers").append("<h3 id='reStartBtn'  class='btn-dark rounded mt-3'>Start Game</h3>");
+            //reStart game
+            $("#reStartBtn").on('click',function(){
+                clearInterval(timer);
+                $("#reStartBtn").hide("slow");
+                clearAll();
+                
+                assignQnA();
+            })
+            $("#score-display").html("");
+
+        }else{
+        count = 30;
+        timer = setInterval(timeOut,1000);
         //assign a random object to randomquestion index var
         var randomQuestion = Math.floor(Math.random() * (questionsNanswers.length));
         var possibleAnswers = questionsNanswers[randomQuestion].pa;
-        
+        //setup graphics
         $("#question-display").append("<h2>Question:</h2>");
         $("#question-display").append("<h2 class='rounded text-light m-2'>"+questionsNanswers[randomQuestion].q+"</h2>");
         $("#answers").append("<h2>Answers</h2>");   
@@ -32,29 +74,35 @@ function gameStart(){
             
             var correctAnswer = questionsNanswers[randomQuestion].ca;
             console.log("correct answer"+correctAnswer);
-            $("#answers").append('<h2 class=" rounded text-light m-2" id='+possibleAnswers[i]+">"+possibleAnswers[i]+"</h2>");
-           
+            $("#answers").append('<h2 class=" rounded text-light m-2" id='+possibleAnswers[i]+">"+possibleAnswers[i]+"</h2>");   
+       
         }
         //find all the elements and add on click function
         $("#answers").find("h2").each(function(){ 
-            //click event .
+            //click event . this refers to h2 element.id
             $(this).on('click',function(){
                 console.log("clicked " +this.id);
                 //if write or wrong statement
                 if (this.id === correctAnswer){
-                    alert("correct");
+                    
+                    clearInterval(timer);
+                    questionsNanswers.splice(randomQuestion);
                     win++;
-                    $("#win").html("correct: "+win);
+                    $("#correct").html("correct: "+win);
                     clearAll();
                     assignQnA();
                     //display correct banner, btn next question
                 }else{
-                    alert("wrong");
-                    //display correct answer 
+                    
+                    loss++;
+                    //display correct answer
+                    $("#incorrect").html("wrong :"+loss);
+                     
 
                 }
             }) 
         });
+    }
     }
     
    
@@ -65,10 +113,26 @@ function gameStart(){
 function clearAll(){
     $("#question-display").html("");
     $("#answers").html("");
+    
 }
-
- 
-
+function timeOut(){
+    
+    count--;
+    $("#timer").html("<h2 class='rounded text-light m-2'>"+count+"</h2>");
+    console.log("time up! ");
+    if(count === 0){
+        loss++;
+        $("#incorrect").html("<h2 class='rounded text-light m-2'>Incorrect :"+loss+"</h2>");
+        clearInterval(timer);
+    }
+}
+//reStart game
+$("#reStartBtn").on('click',function(){
+    clearInterval(timer);
+    $("#reStartBtn").hide("slow");
+    clearAll();
+    gameStart();
+})
 //Start game
 $("#startBtn").on('click',function(){
     $("#startBtn").hide("slow");

@@ -1,0 +1,24 @@
+{
+"questionsNanswers":[
+    {
+        "q":"Which of these is not one of the three domains of life?",
+        "pa":["Siberia","Bacteria", "Eukaria"],
+        "ca":"Siberia"
+    },
+    {
+        "q":"Wich U.S state borders more Canadian provinces than any other state?",
+        "pa":["Montana","New York", "Wisconsin"],
+        "ca":"Montana"
+    },
+    {
+        "q":"Piraeus serves as the port for the city that is the chief commercial and transportation center of Greece. Name this city.",
+        "pa":["Nicosia","Instanbul", "Athens"],
+        "ca":"Athens"    
+    },
+    {
+        "q":"Which of the following countries has the longest coastline?",
+        "pa":["Virginia","Iran", "Brazil"],
+        "ca":"Iran"    
+    }
+]
+}

@@ -1,6 +1,7 @@
 /**
  * index.scss
  */
+ @import url(https://fonts.googleapis.com/css?family=Londrina+Solid|Nunito:400,300);
  :root {
   --main-content-bg-color: #FAF4F1;
   --html-content-bg-color: #887B86;
@@ -14,7 +15,7 @@
    padding:0;
  }
  body {
-
+  font-family: "Londrina Solid", cursive;
    background: var(--html-content-bg-color);
  }
  .fc{
@@ -61,8 +62,8 @@
 
  }
  .fc aside{
-    background-color: var(--main-content-bg-color);
-  
+     background-color: var(--main-content-bg-color);
+     
      width: auto;
      text-align: center;
      max-width: auto;
