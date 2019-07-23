@@ -45,7 +45,7 @@ function gameStart(){
     
     function assignQnA(){
         console.log(questionsNanswers.length);
-        if(questionsNanswers.length === 0){
+        if(questionsNanswers.length <= 0){
             clearInterval(timer);
             clearAll();
             $("#answers").append("<h1>GAME OVER!</h1>");
@@ -56,8 +56,7 @@ function gameStart(){
                 clearInterval(timer);
                 $("#reStartBtn").hide("slow");
                 clearAll();
-                
-                gameStart();
+                assignQnA();
             })
             $("#score-display").html("");
 
@@ -87,7 +86,7 @@ function gameStart(){
                 if (this.id === correctAnswer){
                     
                     clearInterval(timer);
-                    questionsNanswers.splice(randomQuestion);
+                    questionsNanswers.splice(randomQuestion,1);
                     win++;
                     $("#correct").html("correct: "+win);
                     clearAll();
@@ -128,6 +127,7 @@ function timeOut(){
         clearInterval(timer);
     }
 }
+ 
 
 //Start game
 $("#startBtn").on('click',function(){
