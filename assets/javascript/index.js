@@ -44,7 +44,8 @@ function gameStart(){
     $("#score-display").append("<h2 class='rounded text-light m-2'id='incorrect'>Incorrect :"+loss+"</h2>");
     
     function assignQnA(){
-        if(questionsNanswers.length < 0){
+        console.log(questionsNanswers.length);
+        if(questionsNanswers.length === 0){
             clearInterval(timer);
             clearAll();
             $("#answers").append("<h1>GAME OVER!</h1>");
@@ -56,7 +57,7 @@ function gameStart(){
                 $("#reStartBtn").hide("slow");
                 clearAll();
                 
-                assignQnA();
+                gameStart();
             })
             $("#score-display").html("");
 
@@ -64,14 +65,14 @@ function gameStart(){
         count = 30;
         timer = setInterval(timeOut,1000);
         //assign a random object to randomquestion index var
-        var randomQuestion = Math.floor(Math.random() * (questionsNanswers.length));
+        var randomQuestion = Math.floor(Math.random() * questionsNanswers.length);
         var possibleAnswers = questionsNanswers[randomQuestion].pa;
         //setup graphics
         $("#question-display").append("<h2>Question:</h2>");
         $("#question-display").append("<h2 class='rounded text-light m-2'>"+questionsNanswers[randomQuestion].q+"</h2>");
-        $("#answers").append("<h2>Answers</h2>");   
+        $("#answers").append("<h2>Answers</h2>");  
+        //for  
         for (var i = 0;i<possibleAnswers.length;i++){
-            
             var correctAnswer = questionsNanswers[randomQuestion].ca;
             console.log("correct answer"+correctAnswer);
             $("#answers").append('<h2 class=" rounded text-light m-2" id='+possibleAnswers[i]+">"+possibleAnswers[i]+"</h2>");   
@@ -103,9 +104,10 @@ function gameStart(){
             }) 
         });
     }
-    }
-    
-   
+}
+
+
+ 
     assignQnA();
 }
 
@@ -126,21 +128,10 @@ function timeOut(){
         clearInterval(timer);
     }
 }
-//reStart game
-$("#reStartBtn").on('click',function(){
-    clearInterval(timer);
-    $("#reStartBtn").hide("slow");
-    clearAll();
-    gameStart();
-})
+
 //Start game
 $("#startBtn").on('click',function(){
     $("#startBtn").hide("slow");
     //assign first question
     gameStart();
 })
-
-
-
-
-
