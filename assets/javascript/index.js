@@ -32,7 +32,7 @@ var timer;
 var count = 30;
 //function load() {
    // var someData_notJSON = JSON.parse(queryURL);
-   // console.log(someData_notJSON[0].red); // Will log "is my fave color"
+   // console.log(someData_notJSON[0]);
    // }
 //load();
 //todo: Timer
@@ -46,17 +46,21 @@ function gameStart(){
     function assignQnA(){
         console.log(questionsNanswers.length);
         if(questionsNanswers.length <= 0){
-            clearInterval(timer);
+            
             clearAll();
             $("#answers").append("<h1>GAME OVER!</h1>");
             $("#answers").append("<h1>Best Score "+win+" !</h1>");
             $("#answers").append("<h3 id='reStartBtn'  class='btn-dark rounded mt-3'>Start Game</h3>");
+            
+            clearInterval(timer);
             //reStart game
             $("#reStartBtn").on('click',function(){
+                console.log("clicked")
                 clearInterval(timer);
-                $("#reStartBtn").hide("slow");
+                //$("#reStartBtn").hide();
                 clearAll();
-                assignQnA();
+                location.reload();
+
             })
             $("#score-display").html("");
 
@@ -93,10 +97,14 @@ function gameStart(){
                     assignQnA();
                     //display correct banner, btn next question
                 }else{
-                    
+                    clearInterval(timer);
+                    questionsNanswers.splice(randomQuestion,1);
                     loss++;
                     //display correct answer
                     $("#incorrect").html("wrong :"+loss);
+                    clearAll();
+                    assignQnA();
+                    
                      
 
                 }
@@ -110,10 +118,14 @@ function gameStart(){
     assignQnA();
 }
 
+
+
+
 //clear next
 function clearAll(){
     $("#question-display").html("");
     $("#answers").html("");
+    
     
 }
 function timeOut(){
@@ -127,11 +139,14 @@ function timeOut(){
         clearInterval(timer);
     }
 }
- 
+function restartGame(){
+    gameStart();
+}
 
 //Start game
-$("#startBtn").on('click',function(){
-    $("#startBtn").hide("slow");
+let startBtn = $("#startBtn");
+$(startBtn).on('click',function(){
+    $(startBtn).hide("slow");
     //assign first question
     gameStart();
 })
